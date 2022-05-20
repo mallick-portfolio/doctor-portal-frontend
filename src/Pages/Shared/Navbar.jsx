@@ -1,17 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const menus = (
   <>
     <li>
-      <a>Item 1</a>
+      <Link to={"/"}>Home</Link>
     </li>
     <li>
-      <a>Item 3</a>
+      <Link to={"/about"}>About</Link>
+    </li>
+    <li>
+      <Link to={"/appoinment"}>Appointment</Link>
+    </li>
+    <li>
+      <a>Reviews</a>
+    </li>
+    <li>
+      <a>Contact Us</a>
+    </li>
+    <li>
+      <a>Login</a>
     </li>
   </>
 );
 const Navbar = () => {
   return (
-    <div class="navbar bg-primary lg:px-12 mx-auto">
+    <div class="navbar bg-primary sticky top-0 z-50 lg:px-12 mx-auto">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
