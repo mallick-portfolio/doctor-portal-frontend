@@ -1,7 +1,9 @@
+import Navbar from "./Pages/Shared/Navbar.jsx";
+
 function App() {
   return (
     <div className="App">
-      <h1>hello world</h1>
+      <Navbar />
     </div>
   );
 }
