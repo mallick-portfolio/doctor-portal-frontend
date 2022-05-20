@@ -4,6 +4,7 @@ import HomeAppoinment from './HomeAppoinment.jsx'
 import HomeContact from './HomeContact.jsx'
 import HomeTreatMent from './HomeTreatMent.jsx'
 import Services from './Services.jsx'
+import Testimonial from './Testimonial.jsx'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Services />
       <HomeTreatMent />
       <HomeAppoinment />
+      <Testimonial />
     </div>
   )
 }
