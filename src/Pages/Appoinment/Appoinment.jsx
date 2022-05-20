@@ -1,23 +1,18 @@
-import React from "react";
-import { DayPicker } from "react-day-picker";
-import chair from '../../assets/images/chair.png'
-const Appoinment = () => {
-  return (
-    <div className="lg:px-12 mx-auto my-12">
-      <div class="hero">
-        <div class="hero-content flex-col lg:flex-row-reverse">
-          <img
-            src={chair}
-            class="lg:max-w-lg rounded-lg shadow-2xl"
-            alt=""
-          />
-          <div>
-            <DayPicker />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+import React, { useState } from 'react'
+import Footer from '../Shared/Footer.jsx';
+import AppoinmentBanner from './AppoinmentBanner.jsx'
+import AvailableAppoinment from './AvailableAppoinment.jsx';
 
-export default Appoinment;
+const Appoinment = () => {
+ const [date, setDate] = useState(new Date());
+
+  return (
+    <div className="lg:px-16 mx-auto my-12">
+      <AppoinmentBanner date={date} setDate={setDate} />
+      <AvailableAppoinment date={date} />
+      <Footer />
+    </div>
+  )
+}
+
+export default Appoinment

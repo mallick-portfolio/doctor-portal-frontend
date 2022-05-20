@@ -1,8 +1,8 @@
 import React from "react";
-
+import footer from '../../assets/images/footer.png'
 const Footer = () => {
   return (
-    <footer class="footer lg:px-16 mx-auto bg-base-200 text-base-content">
+    <footer style={{ backgroundImage: `url(${footer})` }} class="footer  text-base-content">
       <div>
         <svg
           width="50"
