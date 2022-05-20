@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../Shared/Footer.jsx'
 import Banner from './Banner.jsx'
 import ContactUs from './ContactUs.jsx'
 import HomeAppoinment from './HomeAppoinment.jsx'
@@ -17,6 +18,7 @@ const Home = () => {
       <HomeAppoinment />
       <Testimonial />
       <ContactUs />
+      <Footer />
     </div>
   )
 }
