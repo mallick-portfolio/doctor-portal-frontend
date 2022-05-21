@@ -11,38 +11,38 @@ const ContactUs = () => {
           <h1 className="text-2xl text-secondary">Contact Us</h1>
           <h3 className="text-4xl text-white">Stay connected with us</h3>
         </div>
-        <div class="flex items-center">
-          <div class="w-full">
-            <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
+        <div className="flex items-center">
+          <div className="w-full">
+            <div className="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
               <form action="">
-                <div class="mb-3">
+                <div className="mb-3">
                   <input
                     type="text"
                     id="name"
                     name="name"
                     placeholder="Email Address"
-                    class="border border-gray-300 shadow p-3 w-full rounded"
+                    className="border border-gray-300 shadow p-3 w-full rounded"
                   />
                 </div>
 
-                <div class="mb-3">
+                <div className="mb-3">
                   <input
                     type="text"
                     id="twitter"
                     name="twitter"
                     placeholder="Subject"
-                    class="border border-gray-300 shadow p-3 w-full rounded"
+                    className="border border-gray-300 shadow p-3 w-full rounded"
                   />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <textarea
-                    class="border border-gray-300 shadow p-3 w-full rounded"
+                    className="border border-gray-300 shadow p-3 w-full rounded"
                     cols="10"
                     rows="4"
                   ></textarea>
                 </div>
 
-                <button class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">
+                <button className="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">
                   Submit
                 </button>
               </form>

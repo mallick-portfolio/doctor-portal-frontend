@@ -2,12 +2,12 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div class="flex justify-center items-center h-screen fixed top-0 left-0 right-0 bottom-0 w-full z-50 overflow-hidden bg-gray-700 opacity-75">
+    <div className="flex justify-center items-center h-screen fixed top-0 left-0 right-0 bottom-0 w-full z-50 overflow-hidden bg-gray-200">
       <div
-        class="spinner-border animate-spin inline-block w-8 h-8 rounded-full"
+        className="spinner-border animate-spin inline-block w-8 h-8 rounded-full"
         role="status"
       >
-        <span class="visually-hidden">
+        <span className="visually-hidden">
           <svg
             className="animate-spin -inline-block w-8 h-8 border-4 rounded-full"
             xmlns="http://www.w3.org/2000/svg"

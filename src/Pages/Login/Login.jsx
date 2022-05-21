@@ -1,34 +1,47 @@
-import React from "react";
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import React, { useEffect } from "react";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init.js";
 import Loader from "../Shared/Loader.jsx";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail, sending, serror] = useSendPasswordResetEmail(
-      auth
-    );
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate()
-  if (error) {
-     toast("Your Login Failed. Please try again")
-     return navigate('/login')
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (error || gerror) {
+      toast("Your Login Failed. Please try again");
+      return navigate("/login");
+    }
+  }, [error, gerror, navigate]);
+  useEffect(() => {
+    if (user || guser) {
+      toast("Login Successfully");
+      navigate(from, { replace: true });
+    }
+  }, [from, guser, navigate, user]);
+  if (loading || sending || gloading) {
+    return <Loader />;
   }
-  if (loading ||sending) {
-    return <Loader />
-  }
-  if (user) {
-    navigate('/')
-  }
+
   const onSubmit = async (data) => {
-    await signInWithEmailAndPassword(data.email, data.password)
+    await signInWithEmailAndPassword(data.email, data.password);
   };
   return (
     <div className="min-h-screen flex justify-center items-center">
@@ -64,10 +77,10 @@ const Login = () => {
             )}
           </div>
           <input
-            // onClick={async () => {
-            //   const email = getValues("email");
-            //   await sendPasswordResetEmail(email);
-            // }}
+            onClick={async () => {
+              const email = getValues("email");
+              await sendPasswordResetEmail(email);
+            }}
             type={"submit"}
             value="Forgot Password ?"
             className="text-sm cursor-pointer text-secondary my-4"
@@ -92,7 +105,7 @@ const Login = () => {
         </form>
         <div>
           <button
-            // onClick={() => signInWithGoogle()}
+            onClick={() => signInWithGoogle()}
             className="btn text-center bg-white text-neutral border-black hover:text-white w-full"
           >
             CONTINUE WITH GOOGLE

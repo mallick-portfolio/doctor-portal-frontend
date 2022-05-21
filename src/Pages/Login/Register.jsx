@@ -28,12 +28,16 @@ const Register = () => {
       return navigate("/login");
     }
   }, [error, gerror, navigate, upError]);
+  useEffect(() => {
+    if (user || guser) {
+      toast("Registation Successfully");
+      navigate("/");
+    }
+  }, [guser, navigate, user]);
   if (loading || gloading || updating) {
     return <Loader />;
   }
-  if (user || guser) {
-    navigate('/')
-  }
+
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
