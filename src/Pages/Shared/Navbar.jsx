@@ -18,7 +18,7 @@ const menus = (
       <a>Contact Us</a>
     </li>
     <li>
-      <a>Login</a>
+      <Link to={"/login"}>Login</Link>
     </li>
   </>
 );
