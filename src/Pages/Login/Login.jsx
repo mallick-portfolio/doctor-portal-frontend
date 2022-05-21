@@ -1,38 +1,67 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init.js";
+import Loader from "../Shared/Loader.jsx";
 const Login = () => {
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, serror] = useSendPasswordResetEmail(
+      auth
+    );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate()
+  if (error) {
+     toast("Your Login Failed. Please try again")
+     return navigate('/login')
+  }
+  if (loading ||sending) {
+    return <Loader />
+  }
+  if (user) {
+    navigate('/')
+  }
+  const onSubmit = async (data) => {
+    await signInWithEmailAndPassword(data.email, data.password)
+  };
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="lg:w-1/3 px-4 py-6 rounded-md shadow-2xl">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h3 className="text-center text-2xl mb-3">Login</h3>
           <div className="mb-2">
             <p className="label-text mb-2">Email</p>
             <input
               type="email"
-              // {...register("email", {
-              //   required: "Please enter your email address",
-              // })}
+              {...register("email", {
+                required: "Please enter your email address",
+              })}
               placeholder="email"
               className="input input-bordered w-full max-w-sm"
             />
-            {/* {errors.email && (
-                <p className="text-red-500">{errors.email?.message}</p>
-              )} */}
+            {errors.email && (
+              <p className="text-red-500">{errors.email?.message}</p>
+            )}
           </div>
           <div className="mb-2">
             <p className="label-text mb-2">Password</p>
             <input
               type="password"
-              // {...register("password", {
-              //   required: "Your Password Is Required",
-              // })}
+              {...register("password", {
+                required: "Your Password Is Required",
+              })}
               placeholder="Password"
               className="input input-bordered w-full max-w-sm"
             />
-            {/* {errors.password && (
-                <p className="text-red-500">{errors.password?.message}</p>
-              )} */}
+            {errors.password && (
+              <p className="text-red-500">{errors.password?.message}</p>
+            )}
           </div>
           <input
             // onClick={async () => {

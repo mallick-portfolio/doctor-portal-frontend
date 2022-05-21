@@ -4,6 +4,8 @@ import Home from "./Pages/Home/Home.jsx";
 import Appoinment from "./Pages/Appoinment/Appoinment.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Login/Register.jsx";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <div className="overflow-hidden">
@@ -14,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />}  />
         <Route path="/register" element={<Register />}  />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
